@@ -1,0 +1,4 @@
+# PF6- CASCI benchmark
+# Basis: cc-pVDZ
+HF_energy(Ha)     = -937.6178973550
+CASCI_energy(Ha)  = -937.6182137083

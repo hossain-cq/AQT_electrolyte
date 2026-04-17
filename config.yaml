@@ -1,0 +1,78 @@
+# ============================================================
+# AQT Electrolyte Study — Central Configuration
+# DOI: https://doi.org/10.1002/qute.202500871
+# ============================================================
+
+# ── Physical constants ────────────────────────────────────────────────────
+constants:
+  hartree_to_ev: 27.211386245988      # CODATA 2018
+  hartree_to_millihartree: 1000.0
+
+# ── Molecule / system parameters ─────────────────────────────────────────
+molecules:
+  salts: [LiPF6, NaPF6, LiFSI, NaFSI]
+  basis_sets: [sto-3g, 6-31g*, cc-pVDZ, cc-pVTZ]
+  reference_basis: cc-pVTZ             # baseline for relative-energy plots
+
+# ── Active-space definitions (VQE / CASCI) ────────────────────────────────
+active_space:
+  LiPF6:  {n_electrons: 2, n_orbitals: 2}
+  NaPF6:  {n_electrons: 2, n_orbitals: 2}
+  LiFSI:  {n_electrons: 2, n_orbitals: 2}
+  NaFSI:  {n_electrons: 2, n_orbitals: 2}
+  FSI_anion_CASCI:  {n_electrons: 6, n_orbitals: 5}
+  PF6_anion_CASCI:  {n_electrons: 6, n_orbitals: 5}
+
+# ── VQE / optimizer settings ─────────────────────────────────────────────
+vqe:
+  optimizer: L_BFGS_B
+  max_iterations: 1000
+  convergence_threshold: 1.0e-6
+  ansatz: UCCSD
+  mapper: TaperedQubitMapper
+
+# ── Dissociation scan parameters ─────────────────────────────────────────
+dissociation:
+  distance_min_angstrom: 1.5
+  distance_max_angstrom: 6.0
+  n_points: 18
+
+# ── Graphene tight-binding parameters ────────────────────────────────────
+graphene:
+  t1: 2.86           # nearest-neighbour (eV)
+  t2: -0.236         # second-neighbour (eV)
+  t3: 0.252          # third-neighbour (eV)
+  a_bond: 2.55       # C–C bond length (Å)
+  rbm_hidden: 8
+  rbm_restarts: 6
+  rbm_init_scale: 0.05
+  seed: 0
+
+# ── PySCF CASCI benchmark ─────────────────────────────────────────────────
+casci_benchmark:
+  basis: cc-pVDZ
+  charge: -1
+  spin: 0
+  n_threads: 24
+
+# ── Figure output settings ────────────────────────────────────────────────
+figures:
+  dpi: 600
+  format: jpg            # default raster format
+  format_vector: png     # used for publication submissions
+  output_dir: results/figures
+
+# ── Data paths (relative to project root) ────────────────────────────────
+data:
+  dissociation_curves: data/raw/dissociation_curves
+  basis_convergence:   data/raw/basis_convergence
+
+  files:
+    LiFSI_dissociation: lifsI_ccpvtz_dissociation.dat
+    LiPF6_dissociation: lipf6_ccpvtz_dissociation.dat
+    NaPF6_dissociation: napf6_ccpvtz_dissociation.dat
+    FSI_CASCI:          FSI_anion_CASCI.dat
+    PF6_CASCI:          PF6_anion_CASCI.dat
+    NaPF6_fixed_geo:    NaPF6_fixed_geometry_energies.csv
+    NaPF6_diss_rel:     NaPF6_dissociation_relative_ccpVTZ.csv
+    NaPF6_diss_abs:     NaPF6_dissociation_absolute.csv

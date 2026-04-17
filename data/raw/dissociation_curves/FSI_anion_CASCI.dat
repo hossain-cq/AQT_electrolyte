@@ -1,0 +1,4 @@
+# FSI- CASCI benchmark
+# Basis: cc-pVDZ
+HF_energy(Ha)     = -1347.6960736373
+CASCI_energy(Ha)  = -1347.6968630614

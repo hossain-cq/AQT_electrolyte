@@ -1,0 +1,36 @@
+# ============================================================
+# AQT Electrolyte Study — Python Dependencies
+# DOI: https://doi.org/10.1002/qute.202500871
+#
+# Install with:  pip install -r requirements.txt
+# Recommended Python version: 3.10 – 3.12
+# ============================================================
+
+# ── Core scientific stack ─────────────────────────────────────────────────
+numpy>=1.24,<2.0
+matplotlib>=3.7,<4.0
+scipy>=1.11,<2.0
+PyYAML>=6.0
+
+# ── Quantum chemistry (classical) ────────────────────────────────────────
+pyscf>=2.4,<3.0
+
+# ── Qiskit ecosystem (quantum computing) ─────────────────────────────────
+# Pinned to Qiskit 1.x / qiskit-nature 0.7.x generation used in the paper
+qiskit>=1.0,<2.0
+qiskit-aer>=0.14,<1.0
+qiskit-nature>=0.7,<0.8
+qiskit-algorithms>=0.3,<0.4
+qiskit-ibm-runtime>=0.20,<1.0      # required for SQD (IBM Quantum access)
+
+# ffsim — fast Fermionic simulation (for SQD notebooks)
+ffsim>=0.0.35
+
+# ── Machine learning (DNN-VQE hybrid, optional) ──────────────────────────
+torch>=2.1,<3.0
+scikit-learn>=1.3,<2.0
+
+# ── Notebook support ─────────────────────────────────────────────────────
+jupyter>=1.0
+ipykernel>=6.0
+ipywidgets>=8.0
